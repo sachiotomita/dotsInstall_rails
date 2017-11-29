@@ -1,0 +1,26 @@
+<h2>
+  <%= link_to 'Add New', new_post_path, class: 'header-menu' %>
+  My Posts
+</h2>
+<ul>
+<!-- rubyの命令を埋め込む場合は<% %>で括る -->
+<!-- <%= %>は中に記入したrubyの式を評価して表示してくれる -->
+<!-- Actionで指定したインスタンス変数を使用することができる -->
+<% @posts.each do |post| %>
+<li>
+  <!-- リンクの作成
+  link_to 'リンクの名前', 'リンクのURL' -->
+  <%= link_to post.title, post_path(post) %>
+  <!-- 編集ボタンの追加 -->
+  <%= link_to '[Edit]', edit_post_path(post), class: 'command' %>
+  <!-- 削除ボタンの追加 -->
+  <!-- deleteの場合は明示的にdeleteメソッドだということを記述する（method: :delete） -->
+  <!-- data: { confirm: 'Sure??'}の部分で確認ダイアログを表示させる -->
+  <%= link_to '[Delete]',
+    post_path(post), 
+    method: :delete,
+    class: 'command',
+    data: { confirm: 'Sure??'} %>
+</li>
+<% end %>
+</ul>
