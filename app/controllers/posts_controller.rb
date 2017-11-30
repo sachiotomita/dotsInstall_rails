@@ -56,6 +56,7 @@ class PostsController < ApplicationController
   end
 
   private
+    # ストロングパラメータ
     def post_params
       params.require(:post).permit(:title, :body)
     end
